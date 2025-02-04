@@ -9,6 +9,8 @@ def main():
     character_count = get_count_of_each_character(text)
     print(f"--- Begin report of {book_path} ---")
     print(f"{num_words} words found in the document")
+    print()
+    get_book_report(character_count)
 
 
 def get_num_words(text):
@@ -32,6 +34,19 @@ def get_count_of_each_character(book):
             count_of_each_character[letter] = 1
 
     return count_of_each_character
+
+
+def get_book_report(character_dict):
+    def sort_by_value(item):
+        return item[1]
+
+    # Filter out non-alphabetic keys
+    filtered_counts = {k: v for k, v in character_dict.items() if k.isalpha()}
+
+    sorted_dict = dict(sorted(filtered_counts.items(), key=sort_by_value, reverse=True))
+
+    for letter, count in sorted_dict.items():
+        print(f"The '{letter}' character was found {count} times.")
 
 
 main()
