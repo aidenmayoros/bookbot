@@ -40,9 +40,8 @@ def get_book_report(character_dict):
     def sort_by_value(item):
         return item[1]
 
-    # Filter out non-alphabetic keys
+    # Filter out special characters and then sort
     filtered_counts = {k: v for k, v in character_dict.items() if k.isalpha()}
-
     sorted_dict = dict(sorted(filtered_counts.items(), key=sort_by_value, reverse=True))
 
     for letter, count in sorted_dict.items():
